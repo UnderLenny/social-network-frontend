@@ -1,0 +1,16 @@
+@import 'variables';
+@import 'mixins';
+body {
+	font-family: $font-stack;
+	font-size: $font-size-base;
+	color: $text-color;
+	background-color: $background-color;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	width: $container-width;
+	padding: 0 $gutter;
+	@include center-block;
+}

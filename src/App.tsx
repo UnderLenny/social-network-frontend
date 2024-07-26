@@ -1,9 +1,10 @@
 import React from 'react'
+import Layout from './layout/Layout/Layout'
 
 export const App: React.FC = () => {
 	return (
 		<div>
-			<h1>Hello, Webpack, React, and TypeScript!</h1>
+			<Layout />
 		</div>
 	)
 }
