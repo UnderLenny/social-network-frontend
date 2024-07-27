@@ -1,10 +1,13 @@
 import React from 'react'
-import Layout from './layout/Layout/Layout'
+import LeftPanel from './layout/LeftPanel/LeftPanel'
+import './styles/index.scss'
 
-export const App: React.FC = () => {
+const App: React.FC = () => {
 	return (
 		<div>
-			<Layout />
+			<LeftPanel />
 		</div>
 	)
 }
+
+export default App

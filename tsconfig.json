@@ -10,8 +10,10 @@
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"types": ["webpack-env"]
+		"types": ["webpack-env"],
+		"typeRoots": ["./node_modules/@types"],
+		"plugins": [{ "name": "typescript-plugin-css-modules" }]
 	},
-	"include": ["src"],
+	"include": ["src", "declarations.d.ts"],
 	"exclude": ["node_modules"]
 }

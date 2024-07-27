@@ -1,38 +1,30 @@
-require('dotenv').config()
-const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const production = process.env.NODE_ENV === 'production'
 
 module.exports = {
 	entry: './src/main.tsx',
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, './dist'),
 		filename: production ? '[name].[contenthash].js' : '[name].js',
+	},
+	resolve: {
+		extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss'],
 	},
 	module: {
 		rules: [
 			{
-				test: /\.tsx?$/,
-				use: 'ts-loader',
-				exclude: /node_modules/,
-			},
-			{
 				test: /\.(ts|tsx)$/,
 				exclude: /node_modules/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: [
-							'@babel/preset-env',
-							'@babel/preset-react',
-							'@babel/preset-typescript',
-						],
-					},
-				},
+				use: 'ts-loader',
+			},
+			{
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				use: 'babel-loader',
 			},
 			{
 				test: /\.s(a|c)ss$/,
@@ -42,10 +34,17 @@ module.exports = {
 					{
 						loader: 'css-loader',
 						options: {
-							modules: true,
+							importLoaders: 1,
+							modules: {
+								auto: /\.module\.\w+$/i, // Включить CSS модули для файлов с .module. в имени
+								localIdentName: production
+									? '[hash:base64]'
+									: '[path][name]__[local]',
+							},
 							sourceMap: !production,
 						},
 					},
+					'postcss-loader',
 					{
 						loader: 'sass-loader',
 						options: {
@@ -54,10 +53,20 @@ module.exports = {
 					},
 				],
 			},
+			{
+				test: /\.(png|jpg|gif|svg)$/,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							name: '[name].[hash].[ext]',
+							outputPath: 'assets',
+							publicPath: 'assets',
+						},
+					},
+				],
+			},
 		],
-	},
-	resolve: {
-		extensions: ['.tsx', '.ts', '.js', 'scss'],
 	},
 	plugins: [
 		new CleanWebpackPlugin(),
@@ -69,10 +78,11 @@ module.exports = {
 		}),
 	],
 	devServer: {
-		static: path.join(__dirname, 'dist'),
-		hot: true,
+		static: {
+			directory: path.join(__dirname, 'dist'),
+		},
 		compress: true,
-		port: 9000,
+		port: 3001,
 	},
 	mode: production ? 'production' : 'development',
 }
