@@ -23,7 +23,7 @@ const LeftPanel: React.FC = () => {
 							<NavLink
 								to='/news'
 								className={
-									'text-lg text-gray-800 hover:bg-black hover:text-white flex items-center center gap-2 px-5 py-2.5 rounded-lg'
+									'text-lg text-gray-800 hover:bg-black hover:text-white flex items-center center gap-2 px-5 py-2.5 rounded-lg ease-in duration-300'
 								}
 							>
 								<RiCompass3Fill />
@@ -34,7 +34,7 @@ const LeftPanel: React.FC = () => {
 							<NavLink
 								to='/messages'
 								className={
-									'text-lg text-gray-800 hover:bg-black hover:text-white flex items-center center gap-2 px-5 py-2.5 rounded-lg'
+									'text-lg text-gray-800 hover:bg-black hover:text-white flex items-center center gap-2 px-5 py-2.5 rounded-lg ease-in duration-300'
 								}
 							>
 								<FaEnvelope />
@@ -45,7 +45,7 @@ const LeftPanel: React.FC = () => {
 							<NavLink
 								to='/groups'
 								className={
-									'text-lg text-gray-800 hover:bg-black hover:text-white flex items-center center gap-2 px-5 py-2.5 rounded-lg'
+									'text-lg text-gray-800 hover:bg-black hover:text-white flex items-center center gap-2 px-5 py-2.5 rounded-lg ease-in duration-300'
 								}
 							>
 								<RiGroup2Fill />
@@ -56,7 +56,7 @@ const LeftPanel: React.FC = () => {
 							<NavLink
 								to='/friends'
 								className={
-									'text-lg text-gray-800 hover:bg-black hover:text-white flex items-center center gap-2 px-5 py-2.5 rounded-lg'
+									'text-lg text-gray-800 hover:bg-black hover:text-white flex items-center center gap-2 px-5 py-2.5 rounded-lg ease-in duration-300'
 								}
 							>
 								<FaUserFriends />
@@ -67,7 +67,7 @@ const LeftPanel: React.FC = () => {
 							<NavLink
 								to='/settings'
 								className={
-									'text-lg text-gray-800 hover:bg-black hover:text-white flex items-center center gap-2 px-5 py-2.5 rounded-lg'
+									'text-lg text-gray-800 hover:bg-black hover:text-white flex items-center center gap-2 px-5 py-2.5 rounded-lg ease-in duration-300'
 								}
 							>
 								<IoSettings />

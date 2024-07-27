@@ -2,7 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
+import Friends from './pages/Friends/Friends'
+import Groups from './pages/Groups/Groups'
 import { Messenger } from './pages/Messanger/Messenger'
+import Settings from './pages/Settings/Settings'
 
 const router = createBrowserRouter([
 	{
@@ -10,8 +13,20 @@ const router = createBrowserRouter([
 		element: <App />,
 	},
 	{
-		path: 'messages',
+		path: '/messages',
 		element: <Messenger />,
+	},
+	{
+		path: '/groups',
+		element: <Groups />,
+	},
+	{
+		path: '/friends',
+		element: <Friends />,
+	},
+	{
+		path: '/settings',
+		element: <Settings />,
 	},
 ])
 
