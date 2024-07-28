@@ -8,8 +8,8 @@ const production = process.env.NODE_ENV === 'production'
 module.exports = {
 	entry: './src/main.tsx',
 	output: {
-		path: path.resolve(__dirname, './dist'),
-		filename: production ? '[name].[contenthash].js' : '[name].js',
+		filename: 'bundle.js',
+		path: path.resolve(__dirname, 'dist'),
 	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss'],
@@ -83,6 +83,7 @@ module.exports = {
 		},
 		compress: true,
 		port: 3001,
+		historyApiFallback: true,
 	},
 	mode: production ? 'production' : 'development',
 }

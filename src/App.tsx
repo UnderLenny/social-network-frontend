@@ -1,11 +1,13 @@
 import React from 'react'
-import LeftPanel from './layout/LeftPanel/LeftPanel'
+import LoginForm from './components/LoginForm'
 import './styles/index.scss'
 
 const App: React.FC = () => {
 	return (
 		<div>
-			<LeftPanel />
+			{/* <LeftPanel /> */}
+
+			<LoginForm />
 		</div>
 	)
 }
