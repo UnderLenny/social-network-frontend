@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import { createContext } from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
@@ -44,11 +44,9 @@ const rootElement = document.getElementById('root')
 
 if (rootElement) {
 	ReactDOM.createRoot(rootElement).render(
-		<React.StrictMode>
-			<Context.Provider value={{ store }}>
-				<RouterProvider router={router} />
-			</Context.Provider>
-		</React.StrictMode>
+		<Context.Provider value={{ store }}>
+			<RouterProvider router={router} />
+		</Context.Provider>
 	)
 } else {
 	console.error('Failed to find the root element')
