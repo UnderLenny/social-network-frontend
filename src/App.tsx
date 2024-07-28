@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import React, { useContext, useEffect, useState } from 'react'
 import LoginForm from './components/LoginForm'
+import LeftPanel from './layout/LeftPanel/LeftPanel'
 import { Context } from './main'
 import { IUser } from './models/IUser'
 import UserService from './services/UserService'
@@ -38,7 +39,7 @@ const App: React.FC = () => {
 
 	return (
 		<div>
-			<h1>
+			{/* <h1>
 				{store.isAuth
 					? `Пользователь авторизован ${store.user.email}`
 					: 'Пожалуйста авторизуйтесь'}
@@ -51,7 +52,8 @@ const App: React.FC = () => {
 			</div>
 			{users.map(user => (
 				<div key={user.email}>{user.email}</div>
-			))}
+			))} */}
+			<LeftPanel />
 		</div>
 	)
 }

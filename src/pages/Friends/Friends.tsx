@@ -1,5 +1,6 @@
+import LeftPanel from './../../layout/LeftPanel/LeftPanel'
 const Friends = () => {
-	return <div>Friends</div>
+	return <LeftPanel />
 }
 
 export default Friends

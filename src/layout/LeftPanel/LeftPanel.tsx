@@ -21,7 +21,7 @@ const LeftPanel: React.FC = () => {
 					<ul className='space-y-4 '>
 						<li>
 							<NavLink
-								to='/news'
+								to='/'
 								className={
 									'text-lg text-gray-800 hover:bg-black hover:text-white flex items-center center gap-2 px-5 py-2.5 rounded-lg ease-in duration-300'
 								}
