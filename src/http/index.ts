@@ -23,9 +23,9 @@ $api.interceptors.response.use(
 	async error => {
 		const originalRequest = error.config
 		if (
-			error.response.status == 401 &&
-			error.config &&
-			!error.config._isRetry
+			error.response &&
+			error.response.status === 401 &&
+			!originalRequest._isRetry
 		) {
 			originalRequest._isRetry = true
 			try {
@@ -33,6 +33,7 @@ $api.interceptors.response.use(
 					withCredentials: true,
 				})
 				localStorage.setItem('token', response.data.accessToken)
+				originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`
 				return $api.request(originalRequest)
 			} catch (e) {
 				console.log('Пользователь не авторизован')

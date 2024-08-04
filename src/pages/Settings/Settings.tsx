@@ -1,7 +1,5 @@
-import LeftPanel from '../../layout/LeftPanel/LeftPanel'
-
 const Settings = () => {
-	return <LeftPanel />
+	return <h1>Settings</h1>
 }
 
 export default Settings

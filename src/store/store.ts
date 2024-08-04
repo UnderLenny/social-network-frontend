@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { makeAutoObservable } from 'mobx'
 import { API_URL } from '../http'
 import { IUser } from '../models/IUser'
@@ -9,6 +9,7 @@ export default class Store {
 	user = {} as IUser
 	isAuth = false
 	isLoading = false
+	errorMessage = ''
 
 	constructor() {
 		makeAutoObservable(this)
@@ -26,6 +27,10 @@ export default class Store {
 		this.isLoading = bool
 	}
 
+	setErrorMessage(message: string) {
+		this.errorMessage = message
+	}
+
 	async login(email: string, password: string) {
 		try {
 			const response = await AuthService.login(email, password)
@@ -33,22 +38,36 @@ export default class Store {
 			localStorage.setItem('token', response.data.accessToken)
 			this.setAuth(true)
 			this.setUser(response.data.user)
-		} catch (err) {
-			//@ts-ignore
-			console.log(err.response?.data?.message)
+			this.setErrorMessage('')
+		} catch (err: unknown) {
+			if (err instanceof AxiosError) {
+				this.setErrorMessage(err.response?.data?.message || 'Произошла ошибка')
+			}
 		}
 	}
 
-	async registration(email: string, password: string) {
+	async registration(
+		email: string,
+		password: string,
+		name: string,
+		surname: string
+	) {
 		try {
-			const response = await AuthService.registration(email, password)
+			const response = await AuthService.registration(
+				email,
+				password,
+				name,
+				surname
+			)
 			console.log(response)
 			localStorage.setItem('token', response.data.accessToken)
 			this.setAuth(true)
 			this.setUser(response.data.user)
-		} catch (err) {
-			//@ts-ignore
-			console.log(err.response?.data?.message)
+			this.setErrorMessage('')
+		} catch (err: unknown) {
+			if (err instanceof AxiosError) {
+				this.setErrorMessage(err.response?.data?.message || 'Произошла ошибка')
+			}
 		}
 	}
 
@@ -58,9 +77,11 @@ export default class Store {
 			localStorage.removeItem('token')
 			this.setAuth(false)
 			this.setUser({} as IUser)
-		} catch (err) {
-			//@ts-ignore
-			console.log(err.response?.data?.message)
+			this.setErrorMessage('')
+		} catch (err: unknown) {
+			if (err instanceof AxiosError) {
+				this.setErrorMessage(err.response?.data?.message || 'Произошла ошибка')
+			}
 		}
 	}
 
@@ -73,12 +94,21 @@ export default class Store {
 			localStorage.setItem('token', response.data.accessToken)
 			this.setAuth(true)
 			this.setUser(response.data.user)
-		} catch (err) {
-			//@ts-ignore
-			console.error(err.response.data)
-			//@ts-ignore
+			this.setErrorMessage('')
+		} catch (err: unknown) {
+			if (err instanceof AxiosError) {
+				this.setErrorMessage(err.response?.data?.message || 'Произошла ошибка')
+			}
 		} finally {
 			this.setLoading(false)
 		}
+	}
+
+	getName() {
+		return this.user.name
+	}
+
+	getSurname() {
+		return this.user.surname
 	}
 }

@@ -1,5 +1,3 @@
-import LeftPanel from '../../layout/LeftPanel/LeftPanel'
-
 export const Messenger = () => {
-	return <LeftPanel />
+	return <h1>Messenger</h1>
 }

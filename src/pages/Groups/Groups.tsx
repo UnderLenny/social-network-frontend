@@ -1,7 +1,5 @@
-import LeftPanel from '../../layout/LeftPanel/LeftPanel'
-
 const Groups = () => {
-	return <LeftPanel />
+	return <h1>Groups</h1>
 }
 
 export default Groups
